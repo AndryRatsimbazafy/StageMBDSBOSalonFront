@@ -1,0 +1,69 @@
+<div style="width: 400px">
+  <h1>Modifier l'utilisateur</h1>
+  <!-- <p>ID: {{ data._id }}</p> -->
+  <form [formGroup]="AccountEditForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>nom</mat-label>
+      <input matInput formControlName="lastName" />
+      <mat-error *ngIf="AccountEditForm.get('lastName').invalid">{{
+        getErrorMessage()
+        }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>prénom</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error *ngIf="AccountEditForm.get('firstName').invalid">{{
+        getErrorMessage()
+        }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="AccountEditForm.get('email').invalid">{{
+        getErrorMessage()
+        }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>société</mat-label>
+      <input matInput formControlName="companyName"
+        [readonly]="account.role!=='superadmin' && account.role!=='admin' " />
+      <mat-error
+        *ngIf="AccountEditForm.get('companyName').touched && AccountEditForm.get('companyName').hasError('required')">
+        Veuillez entrer un nom
+      </mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>numéro de stand</mat-label>
+      <input matInput formControlName="standNumber" type="number" (keyup)="existStandNumber()" (change)="existStandNumber()"
+        [readonly]="account.role!=='superadmin' && account.role!=='admin'" />
+      <mat-error
+        *ngIf="AccountEditForm.get('standNumber').touched && AccountEditForm.get('standNumber').hasError('required')">
+        Veuillez entrer un numéro de stand
+      </mat-error>
+    </mat-form-field> -->
+    <mat-form-field appearance="fill" class="mat-form-field-fill" *ngIf="account.role==='superadmin' || account.role==='admin'">
+      <mat-label>nouveau mot de passe *</mat-label>
+      <input matInput formControlName="password" type="password" [readonly]="account.role!=='superadmin' && account.role!=='admin'" />
+    </mat-form-field>
+    <p style="font-size: small;" *ngIf="account.role==='superadmin' || account.role==='admin'">
+      * à remplir seulement en cas de perte du mot de passe par l’utilisateur
+    </p>
+    <br />
+    <p style="color: red" *ngIf="serverError">
+      <mat-icon color="warning">warning</mat-icon>
+      Erreur de serveur: ce n'est pas votre faute. Veuillez nous donner le temps de réparer le
+      problème
+    </p>
+    <br />
+    <p style="color: red">
+      {{ invalidMessage }}
+    </p>
+    <br />
+    <button [disabled]="(isSaving$ | async) || invalid" mat-raised-button color="primary" style="float: right">
+      Modifier
+      <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+      </mat-spinner>
+    </button>
+  </form>
+</div>

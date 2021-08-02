@@ -1,0 +1,80 @@
+<h2>{{ userLabel }}</h2>
+<div class="d-flex align-items-center">
+    <div class="col-md-6 mr-auto">
+        <app-search-bar [placeHolder]="'Rechercher par email'" [searchInside]="users$" searchBy="email" (filteredData)="getFilteredData($event)">
+        </app-search-bar>
+    </div>
+  <button mat-raised-button color="primary" class="mr-4" (click)="addUser()">Nouveau</button>
+  <button mat-raised-button color="accent" (click)="exportAll()">Export excel</button>
+</div>
+<hr>
+<div class="table-container d-flex flex-column justify-content-between mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <ngx-avatar [name]="element.email" size="40"></ngx-avatar>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef> Société </th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="standNumber">
+            <th mat-header-cell *matHeaderCellDef> Numéro de stand </th>
+            <td mat-cell *matCellDef="let element"> {{element.standNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef> Rôle </th>
+            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef> Active </th>
+            <td mat-cell *matCellDef="let element">
+                <span class="material-icons" [ngStyle]="{'color': element.active ? 'limegreen' : 'gray' }">
+                    {{ element.active ? 'done' : 'close' }}
+                </span>
+            </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Créé le </th>
+            <td mat-cell *matCellDef="let element"> {{ element.createdAt | date | date:'d/MM/y' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent" (click)="openDetail(element)">
+                <mat-icon>visibility</mat-icon>
+              </button>
+                <button mat-icon-button color="primary" (click)="editUser(element)" aria-label="edit">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteObject(element)" aria-label="delete">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="sticky-paginator" [pageSize]="10" [pageSizeOptions]="[10, 25, 100]">
+    </mat-paginator>
+</div>
+
+<br>
+<p *ngIf="account === 'exposant' && nbCharacters">*Vous pouvez ajouter au maximum {{ nbCharacters }} utilisateur(s)</p>

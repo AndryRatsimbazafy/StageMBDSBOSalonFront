@@ -1,0 +1,49 @@
+.user-container {
+   
+    .name {
+        position: relative;
+        
+        .connected-icon {
+            width: 8px;
+            height: 8px;
+            background-color: rgb(3, 158, 3);
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            &:after {
+                content: "connecté";
+                font-size: 11px;
+                position: absolute;
+                top: -100%;
+                left: 11px;
+            }
+        }
+
+        .not-connected-icon {
+            width: 8px;
+            height: 8px;
+            background-color: rgb(230, 109, 40);
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            &:after {
+                content: "déconnecté";
+                font-size: 11px;
+                position: absolute;
+                top: -100%;
+                left: 11px;
+            }
+        }
+    }
+
+    .mat-icon {
+        color: #cb3a5f !important;
+    }
+
+
+    
+}

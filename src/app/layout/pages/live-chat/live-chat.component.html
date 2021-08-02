@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="chat px-0 py-3 col-3">
+            <app-chat-list (selectedUser)="chatToUser($event)" [userList]="users"></app-chat-list>
+        </div>
+        <div class="chat ml-1 col-8">
+            <div class="info" *ngIf="selectedUserTochatWith" class="info mb-2">
+                <app-chat-panel-info (call)="openCallDialog()" [user]="selectedUserTochatWith"></app-chat-panel-info>
+            </div>
+            <div class="main">
+                <app-chat-panel *ngIf="selectedUserTochatWith"  [user]="selectedUserTochatWith" [unsent]="localMessages"></app-chat-panel>
+            </div>
+            <div *ngIf="selectedUserTochatWith" class="send mt-1">
+                <app-chat-panel-send (sendMessage)="sendMessage($event)"></app-chat-panel-send>
+            </div>
+        </div>
+    </div>
+</div>
+

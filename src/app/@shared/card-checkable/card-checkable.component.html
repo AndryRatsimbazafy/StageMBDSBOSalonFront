@@ -1,0 +1,11 @@
+<mat-card style="margin-right: 1em; margin-bottom: 1em;">
+    <div class="d-flex" style="float: left;">
+        <p *ngIf="title">{{ title }}</p>
+    </div>
+    <div class="justify-content-end d-flex"
+    [ngStyle]="{'opacity': (!uncheckable) ? '1' : '0'}">
+        <mat-checkbox [checked]="checked" (change)="toggle($event)"></mat-checkbox>
+    </div>
+    <!-- <img style="max-height: 100px " [src]="imagesource" (click)="openDetail(imagesource)" /> -->
+    <app-img-loader (imageClicked)="showImg($event)" [source]="imagesource"></app-img-loader>
+</mat-card>

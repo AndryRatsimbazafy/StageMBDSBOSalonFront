@@ -1,0 +1,26 @@
+app-side-menu {
+  .side-menu-container {
+    padding: 1em;
+    height: 100%;
+    position: relative;
+
+    .user-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1em;
+      span {
+        margin-left: 1em;
+        margin-right: auto;
+      }
+    }
+
+    .call-made {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .mat-dialog-container {
+    background-color: red !important;
+  }
+}

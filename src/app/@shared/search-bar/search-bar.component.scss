@@ -1,0 +1,21 @@
+.searchbar {
+    input[type="search"] {
+      border: none;
+      outline: none;
+      width: 92%;
+      height: 80%;
+      background-color: transparent;
+      margin-left: 1em;
+    }
+
+
+
+    background-color: #e4e4e4;
+    height: 45px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transition: width .5s ease-in-out;
+
+}

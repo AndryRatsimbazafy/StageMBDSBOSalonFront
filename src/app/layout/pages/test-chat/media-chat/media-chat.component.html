@@ -1,0 +1,21 @@
+
+<div class="container">
+  <div class="close">
+    <button mat-mini-fab color="warn" (click)="closeModal()" aria-label="Fermer">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="content">
+    <div id="video-grid">
+      <video class="remote-video" [volume]="0.5"></video>
+      <video id="self-video" [volume]="0"></video>
+      <ngx-avatar class="self-avatar" *ngIf="!(hasMyVideoStream$|async)" [name]="name$|async" size="90"></ngx-avatar>
+    </div>
+    <div class="footer">
+      <app-footer-menu (closeModal)="closeModal($event)"></app-footer-menu>
+    </div>
+  </div>
+  <div class="sidebar">
+    <app-side-menu (closeModal)="closeModal($event)" [usersInfo]="users"></app-side-menu>
+  </div>
+</div>

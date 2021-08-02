@@ -1,0 +1,13 @@
+<div  class="d-flex user-container col-12">
+    <div class="avatar">
+        <ngx-avatar name="{{user.username}}" size="30"></ngx-avatar>
+    </div>
+    <div class="name d-flex ml-2">
+        <p [ngClass]="{'font-weight-bold': user.hasNewMessage}" class="user-name mb-0">{{ user.username }}</p>             
+        <span [ngClass]="{ 'connected-icon':user.connected , 'not-connected-icon': !user.connected}" ></span> 
+    </div>
+
+    <div *ngIf="user.hasNewMessage" class="ml-auto">
+        <mat-icon aria-hidden="false" aria-label="Nouveau message">info</mat-icon>
+    </div>
+</div>

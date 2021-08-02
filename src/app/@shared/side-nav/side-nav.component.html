@@ -1,0 +1,42 @@
+<div class="side-navigation mt-3">
+    <!-- <div class="nav-link" matRipple>
+      <mat-icon class="mr-3">home</mat-icon>
+      Accueil
+    </div> -->
+    <div  matRipple  class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'admin' || accountType === 'exposant' " [routerLink]="['/users']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">supervisor_account</mat-icon>
+      {{ userLabel }}
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'admin' || accountType === 'exposant' " [routerLink]="['/configurator']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">settings</mat-icon>
+      Configurateur
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'admin'" [routerLink]="['/liste-configuration']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">list</mat-icon>
+      Liste des configurations
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'admin' || accountType === 'exposant' " [routerLink]="['/file-management']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">folder</mat-icon>
+      Gestionnaire de fichiers
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin'" [routerLink]="['/content-manager']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">inventory</mat-icon>
+      Gestionnaire de contenu
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'commercial' || accountType === 'coach'" [routerLink]="['/chat']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">message</mat-icon>
+      Messages
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin' || accountType === 'commercial'" [routerLink]="['/reporting']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">insights</mat-icon>
+      Reporting
+    </div>
+    <div matRipple class="nav-link" *ngIf="accountType === 'superadmin'" [routerLink]="['/timer']" routerLinkActive="active-link">
+      <mat-icon class="mr-3">timer</mat-icon>
+      Timer
+    </div>
+    <div matRipple class="nav-link" (click)="logout()">
+      <mat-icon class="mr-3">logout</mat-icon>
+      Se déconnecter
+    </div>
+</div>

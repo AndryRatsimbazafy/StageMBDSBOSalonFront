@@ -1,0 +1,26 @@
+mat-toolbar {
+  justify-content: center;
+  padding: 2em 0;
+  .call {
+    margin: 0 1em;
+  }
+  button {
+    border: 1px solid #7d7d7d;
+  }
+  .custom-round-button {
+    padding: 1em;
+    font-size: .6em;
+    cursor: pointer;
+    position: absolute;
+    right: 5em;
+  }
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  }
+}

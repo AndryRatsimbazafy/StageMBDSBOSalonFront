@@ -1,0 +1,50 @@
+<div fxLayout="row" fxLayoutAlign="end" style="margin-bottom: 1em">
+  <button mat-raised-button color="accent" (click)="exportExcel()">Export excel</button>
+</div>
+<div *ngIf="data?.firstName">
+  <h4>Nom</h4>
+  <p>{{data?.firstName}}</p>
+</div>
+<div *ngIf="data?.lastName">
+  <h4>Prénom</h4>
+  <p>{{data?.lastName}}</p>
+</div>
+<div *ngIf="data?.email">
+  <h4>Email</h4>
+  <p>{{data?.email}}</p>
+</div>
+<div *ngIf="data?.phoneNumber">
+  <h4>Téléphone</h4>
+  <p>{{data?.phoneNumber}}</p>
+</div>
+<div *ngIf="data?.postalCode">
+  <h4>Code postal</h4>
+  <p>{{data?.postalCode}}</p>
+</div>
+<div *ngIf="!lodash.isEmpty(data?.projects)">
+  <h4>Projets</h4>
+  <ul>
+    <li *ngFor="let project of data?.projects">{{project}}</li>
+  </ul>
+</div>
+<div *ngIf="!lodash.isEmpty(data?.conferences)">
+  <h4>Conférence</h4>
+  <ul>
+    <li *ngFor="let conference of data?.conferences">{{conference}}</li>
+  </ul>
+</div>
+
+<div *ngIf="!lodash.isEmpty(data?.coachings)">
+  <h4>Coaching Date</h4>
+  <p>{{data?.coachings?.coachingDate}}</p>
+</div>
+
+<div *ngIf="!lodash.isEmpty(data?.coachings)">
+  <h4>Coaching Hour</h4>
+  <p>{{data?.coachings?.coachingHour}}</p>
+</div>
+
+<div *ngIf="data?.regReason">
+  <h4>Raison de votre visite</h4>
+  <p>{{data?.regReason}}</p>
+</div>

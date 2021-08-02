@@ -1,0 +1,16 @@
+<div class="side-menu-container">
+  <div class="user-list">
+    <h3>Liste des utilisateurs</h3>
+    <hr>
+    <div class="user-item-list">
+      <div class="user-item" *ngFor="let user of users">
+        <ngx-avatar [name]="user?.name"></ngx-avatar>
+        <span>{{user?.name}}</span>
+        <button mat-icon-button *ngIf="room.socketId !== user.socket" (click)="callUser(user.socket)">
+          <mat-icon>call</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <h4 [@showHide]="isCallMade ? 'show': 'hide'" class="call-made" >Appel en cours...</h4>
+</div>

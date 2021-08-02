@@ -1,0 +1,222 @@
+<div style="width: 60vw;">
+
+    <div>
+        <div style="display: inline-flex;">
+            <p mat-dialog-title>Upload</p>
+            <button mat-icon-button (click)="helpMe = !helpMe" color="primary">
+                <mat-icon>help_outline</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="helpMe">
+            <div id="child-popover" class="big-popover popover-default has-footer in bottom bottom-left"
+                style="top: 15%; left: 26%; min-width: 20em;">
+                <div class="arrow"></div>
+                <h3 class="popover-title">
+                    <span class="close pull-right" (click)="helpMe = !helpMe" style="cursor: pointer;">×</span>
+                    Formats des fichiers
+                </h3>
+                <div class="popover-content">
+                    <p>Logo : .svg, .pdf, .ai, .eps</p>
+                    <p>Vidéo : .mp4, .avi (inférieure à 125 Mo)</p>
+                    <p>Flyer : .pdf</p>
+                    <p>Image : .png, .jpg, .jpeg</p>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-content [formGroup]="folderForm" style="display: grid;">
+
+            <section>
+
+                <!-- LOGO -->
+                <details open>
+                    <summary class="clearfix">
+                        Logo
+                        <div *ngIf="logoLoading; then logoNotLoaded else logoLoaded" class="d-flex"></div>
+                        <ng-template #logoNotLoaded>
+                            <mat-spinner diameter="20" class="m-2"></mat-spinner>
+                        </ng-template>
+                        <ng-template #logoLoaded>
+
+                            <div style="float: right;">
+                                <button mat-stroked-button (click)="logoInput.click()"
+                                    [disabled]="(uploading$ | async) || (loading$ | async)"
+                                    matTooltip=".svg, .pdf, .ai, .eps">
+                                    choisir un fichier
+                                </button>
+                                <input hidden (change)="selectFile($event, 'logo')" #logoInput type="file"
+                                    accept=".svg, .pdf, .ai, .eps">
+                            </div>
+
+                        </ng-template>
+                    </summary>
+                    <div>
+                        <mat-card class="example-card">
+                            <img *ngIf="this.selectedLogoExt && this.selectedLogoExt==='svg'" mat-card-image
+                                [src]="logoPreview || 'assets/default-img.png'">
+                            <iframe *ngIf="this.selectedLogoExt && this.selectedLogoExt==='pdf'"
+                                [src]="logoPreview"></iframe>
+                            <div
+                                *ngIf="this.selectedLogoExt && this.selectedLogoExt!=='pdf' && this.selectedLogoExt!=='svg'">
+                                <p>Aucun aperçu disponible</p>
+                            </div>
+                            <ngx-doc-viewer *ngIf="!this.selectedLogoExt" [url]="logoPreview" viewer="google">
+                            </ngx-doc-viewer>
+                            <div class="textBox"><span>{{logo ? logo.name : ''}}</span></div>
+                        </mat-card>
+                    </div>
+                </details>
+
+                <!-- FLYERS -->
+                <details open>
+                    <summary class="clearfix">
+                        Flyers
+                        <mat-spinner *ngIf="flyersLoading" diameter="20" class="m-2"></mat-spinner>
+                        <div *ngIf="!flyersLoading" style="float: right;">
+                            <button mat-stroked-button (click)="selectMultipleFile('flyer')" matTooltip=".pdf"
+                                [disabled]="(uploading$ | async) || (loading$ | async)">
+                                choisir un fichier
+                            </button>
+                            <input type="file" #flyerInput id="flyerInput" name="flyerInput" accept="application/pdf"
+                                style="display:none;" />
+                        </div>
+                    </summary>
+                    <div class="auto-align-example-card">
+                        <mat-card class="example-card" *ngFor="let file of flyerFiles; let i = index;">
+                            <button class="delete-corner" mat-icon-button color="warn" aria-label="delete">
+                                <mat-icon (click)="removeFile('flyer', i)">close
+                                </mat-icon>
+                            </button>
+
+                            <iframe [src]="flyerPreview[i]"></iframe>
+                            <div class="textBox">
+                                <span>{{file ? file.name : ''}}</span>
+                            </div>
+                        </mat-card>
+                    </div>
+                </details>
+
+                <!-- GALLERY -->
+                <details open>
+                    <summary class="clearfix">
+                        Galerie
+                        <mat-spinner *ngIf="galleryLoading" diameter="20" class="m-2"></mat-spinner>
+                        <div *ngIf="!galleryLoading" style="float: right;">
+                            <button mat-stroked-button (click)="selectMultipleFile('gallery')"
+                                [disabled]="(uploading$ | async) || (loading$ | async)" matTooltip=".png, .jpg, .jpeg">
+                                choisir un fichier
+                            </button>
+                            <input type="file" #galleryInput id="galleryInput" name="galleryInput"
+                                accept=".png, .jpg, .jpeg" style="display:none;" />
+                        </div>
+                    </summary>
+                    <div class="auto-align-example-card">
+                        <mat-card class="example-card" *ngFor="let file of galleryFiles; let i = index;">
+                            <button class="delete-corner" mat-icon-button color="warn" aria-label="delete">
+                                <mat-icon (click)="removeFile('gallery', i)">close
+                                </mat-icon>
+                            </button>
+                            <img mat-card-image [src]="galleryPreview[i] || 'assets/default-img.png'">
+                            <div class="textBox"><span>{{file ? file.name : ''}}</span></div>
+
+                        </mat-card>
+                    </div>
+                </details>
+
+                <!-- VIDEO -->
+                <details open>
+                    <summary class="clearfix">
+                        Vidéos
+                        <div *ngIf="videoLoading; then videoNotLoaded else videoLoaded" class="d-flex"></div>
+                        <ng-template #videoNotLoaded>
+                            <mat-spinner diameter="20" class="m-2"></mat-spinner>
+                        </ng-template>
+                        <ng-template #videoLoaded>
+
+                            <div style="float: right;">
+                                <button mat-stroked-button style="opacity: 0;">
+                                    choisir un fichier
+                                </button>
+                                <input style="display:none;" />
+                            </div>
+
+                        </ng-template>
+                    </summary>
+                    <div>
+                        <p style="margin-bottom: 1em; padding-left: 0px;">
+                            * Si vous souhaitez remplacer une vidéo, veuillez attendre qu'elle soit chargée avant d'en
+                            uploader une nouvelle
+                        </p>
+                        <div style="display: flex; width: 100%;">
+                            <div>
+                                <img [src]="imagePreviewForVideo" alt="" style="max-height: 20em;">
+                            </div>
+
+                            <div *ngIf="roomType" style="display: grid;margin-left: 1em;">
+                                <div *ngFor="let in of counter(roomType.maxEcran); let i = index">
+                                    <button mat-stroked-button (click)="selectVideoFile(i)"
+                                        [disabled]="(uploading$ | async) || (loading$ | async)"
+                                        matTooltip=".mp4, .avi (inférieure à 125 Mo)">
+                                        écran numéro {{ i+1 }}
+                                    </button>
+                                    <input type="file" #videoInput id="videoInput" name="videoInput"
+                                        accept="video/avi, video/mp4" style="display:none;" />
+
+                                    <div style="margin-top: 1em; display: flex"
+                                        *ngIf="loadingProgress[i] && loadingProgress[i]<100">
+                                        <p style="margin: auto;">chargement : </p>
+                                        <mat-progress-bar mode="determinate" [value]="loadingProgress[i]"
+                                            class="medium-pb"></mat-progress-bar>
+                                        <span style="margin-left: 1em;">{{ loadingProgress[i] }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <mat-card class="example-card" *ngFor="let file of videoFiles; let i = index;"
+                            style="margin: 1em;">
+                            <!-- <button class="delete-corner" mat-icon-button color="warn" aria-label="delete">
+                                <mat-icon (click)="removeFile('video', i)">close
+                                </mat-icon>
+                            </button> -->
+                            <video [src]="videoPreview[i]" poster="assets/default-img.png" controls>
+                                Votre navigateur ne prend pas en charge la vidéo.
+                            </video>
+                            <div class="textBox">
+                                <span>Ecran {{ i+1 }} : {{file ? file.name : ''}}</span>
+                            </div>
+                        </mat-card>
+                    </div>
+                </details>
+
+            </section>
+
+        </div>
+
+        <!-- Buttons -->
+        <div style="display: flex; justify-content: space-between;">
+            <div style="margin-top: 1em;">
+                <p style="color: red; font-size: small;">{{ errorMessage }}</p>
+                <p *ngIf="confirmErrorMessage" style="color: red; font-size: small;">{{ confirmErrorMessage }}</p>
+
+                <div style="margin-top: 1em; display: flex"
+                    *ngIf="(uploading$ | async) && uploadProgress && uploadProgress<100">
+                    <p style="margin: auto;">progression : </p>
+                    <mat-progress-bar mode="determinate" [value]="uploadProgress" class="medium-pb">
+                    </mat-progress-bar>
+                    <span style="margin-left: 1em;">{{ uploadProgress }}%</span>
+                </div>
+                <p *ngIf="uploading$ | async">traitement en cours (cela peut prendre quelques minutes)</p>
+            </div>
+            <div mat-dialog-actions>
+                <!-- <button mat-button (click)="cancel()">
+                    Annuler
+                </button> -->
+                <button mat-raised-button color="primary"
+                    [disabled]="!folderForm.valid || (uploading$ | async) || (loading$ | async)" (click)="cancel()">
+                    Revenir au gestionnaire de fichiers
+                    <mat-spinner *ngIf="uploading$ | async" diameter="20" class="float-right m-2">
+                    </mat-spinner>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

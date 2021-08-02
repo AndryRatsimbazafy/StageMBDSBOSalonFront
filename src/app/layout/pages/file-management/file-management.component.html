@@ -1,0 +1,86 @@
+<div>
+    <h2>Gestionnaire de fichiers</h2>
+
+    <div>
+        <div class="table-header"
+            [ngStyle]="{'direction': (accountLogged?.role != 'admin' && accountLogged?.role != 'superadmin') ? 'rtl' : 'ltr'}">
+            <div *ngIf="accountLogged?.role === 'admin' || accountLogged?.role === 'superadmin'">
+                <mat-form-field style="width: 30em;" appearance="fill">
+                    <mat-label>Société</mat-label>
+                    <mat-select #mySelect (selectionChange)="onOptionsSelected(mySelect.value)">
+                        <mat-option *ngFor="let user of users" [value]="user?._id">
+                            {{ user?.companyName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" (click)="upload()" style="margin-bottom: 1.34375em"
+                *ngIf="(!initial && !(isLoading$ | async) && !disableUpload)"
+                [ngStyle]="{'display': ((accountLogged?.role === 'admin' || accountLogged?.role === 'superadmin') && !selectedUser) ? 'none' : 'block'}">
+                <span class="material-icons">
+                    cloud_upload
+                </span>
+                Upload
+            </button>
+        </div>
+        
+        <div *ngIf="(initial || (isLoading$ | async)); then loading else loaded"></div>
+
+        <ng-template #loading>
+            <div class="justify-content-center d-flex">
+                <mat-spinner *ngIf="isLoading$ | async" diameter="60">
+                </mat-spinner>
+            </div>
+        </ng-template>
+
+
+        <ng-template #loaded>
+            <ngx-datatable [messages]="{emptyMessage:'Aucune donnée à afficher.'}" class="material" [headerHeight]="50"
+                [footerHeight]="50" rowHeight="auto" [rows]="rows" [columnMode]="ColumnMode.flex">
+                <ngx-datatable-column name="Nom" prop="name" [flexGrow]="3">
+                    <ng-template let-value="value" let-row="row" ngx-datatable-cell-template class="clickable">
+                        <div (click)="openElement(row)" style="cursor: pointer;">
+                            <div *ngIf="row.type=='folder'; then folderTemplate else fileTemplate"></div>
+                            <ng-template #folderTemplate>
+                                <button mat-icon-button aria-label="folder" *ngIf="row.type!='return'">
+                                    <mat-icon>folder</mat-icon>
+                                </button>
+                            </ng-template>
+                            <ng-template #fileTemplate>
+                                <span class="material-icons" *ngIf="row.type!='return'">
+                                    insert_drive_file
+                                </span>
+                            </ng-template>
+                            {{ value }}
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="date" [flexGrow]="1" [sortable]="false">
+                    <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                        <div *ngIf="row.type!='return'">
+                            {{ value | date | date:'d/MM/y' }}
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+                    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+                        <button mat-icon-button color="warn" aria-label="delete"
+                            (click)="deleteObject(row.category, rowIndex-1)"
+                            *ngIf="row.type=='file' && row.category!='logo' && row.category!='videos'">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-footer>
+                    <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
+                        <div style="margin-left: 2em;">
+                            Total: {{ (rows && rows[0] && rows[0].type==='return') ? rowCount-1 : rowCount }}
+                        </div>
+                    </ng-template>
+                </ngx-datatable-footer>
+            </ngx-datatable>
+        </ng-template>
+    </div>
+
+    <p *ngIf="!initial && !(isLoading$ | async) && !asset && !room && !room?.variant" style="color: red; margin-top: 2em;">{{ noRoomForUserMessage }}</p>
+</div>

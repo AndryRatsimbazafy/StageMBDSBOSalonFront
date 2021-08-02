@@ -1,0 +1,25 @@
+.previewContainer {
+    margin: 0em 0em 3em 0em;
+    max-width: 60vw;
+    display: grid;
+    padding: 1em 0em;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px 1%;
+}
+
+.previewContainer > div {
+    margin-bottom: 2em;
+}
+.card-color {
+    display: block;
+    div {
+        height: 94%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+            width: 10em;
+            height: 10em;
+        }
+    }
+}

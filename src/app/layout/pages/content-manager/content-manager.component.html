@@ -1,0 +1,239 @@
+<h2>Gestionnaire de contenu</h2>
+<mat-accordion class="cm-container">
+  <!-- type -->
+  <mat-expansion-panel class="mx-3 my-2">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Types de standes
+        <span *ngIf="standTypes.length" class="custom-badge">{{
+          standTypes.length ? standTypes.length : ""
+          }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- type stande content -->
+    <div [formGroup]="standTypeForm">
+      <div formArrayName="types" *ngFor="let type of standTypes.controls; let i = index">
+        <div [formGroupName]="i" class="col-md-12 type-container">
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>Nom type de stand</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error class="my-1" *ngIf="checkError(type, 'name', 'required')">Veuillez ajouter le nom</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>Max Personnage</mat-label>
+            <input matInput formControlName="maxPersonnage" />
+            <mat-error class="my-1" *ngIf="checkError(type, 'maxPersonnage', 'required')">Veuillez ajouter le nombre maximum de personnage</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>Max Ecran</mat-label>
+            <input matInput formControlName="maxEcran" />
+            <mat-error class="my-1" *ngIf="checkError(type, 'maxEcran', 'required')">Veuillez ajouter le nombre maximum d'écran</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-5" appearance="outline">
+            <mat-label>url</mat-label>
+            <input matInput formControlName="url" />
+            <mat-error class="my-1" *ngIf="checkError(type, 'url', 'required')">Veuillez ajouter l'url</mat-error>
+          </mat-form-field>
+
+          <button class="clear-btn" mat-icon-button color="warn" aria-label="Effacer le type"
+            (click)="removeItem(standTypes, i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mt-2">
+      <button class="mx-3" mat-raised-button color="primary" (click)="createItemStandType(standTypes)">
+        Nouveau
+      </button>
+      <button [disabled]="isSaving$ | async" mat-button color="primary" (click)="validateItems(standTypeForm)">
+        Valider
+        <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+        </mat-spinner>
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- variantes -->
+  <mat-expansion-panel class="mx-3 my-2">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Variantes de standes
+        <span *ngIf="standVariantes.length" class="custom-badge">{{
+          standVariantes.length ? standVariantes.length : ""
+          }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- variante stande content -->
+    <div [formGroup]="standVarianteForm">
+      <div formArrayName="variantes" *ngFor="let variante of standVariantes.controls; let i = index">
+        <div [formGroupName]="i" class="col-md-12 type-container">
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>nom variante</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error class="my-1" *ngIf="checkError(variante, 'name', 'required')">Veuillez ajouter le nom</mat-error>
+          </mat-form-field>
+          <mat-form-field class="mx-1 col-md-1" appearance="outline">
+            <mat-label>Type de stand</mat-label>
+            <mat-select formControlName="idTypes">
+              <mat-option *ngFor="let item of types" [value]="item._id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mx-1 col-md-3" appearance="outline">
+            <mat-label>url de l'image</mat-label>
+            <input matInput formControlName="url" />
+            <mat-error class="my-1" *ngIf="checkError(variante, 'url', 'required')">Veuillez ajouter l'url</mat-error>
+          </mat-form-field>
+          <mat-form-field class="mx-1 col-md-3" appearance="outline">
+            <mat-label>url de l'image pour video</mat-label>
+            <input matInput formControlName="videoPreviewUrl" />
+            <mat-error class="my-1" *ngIf="checkError(variante, 'videoPreviewUrl', 'required')">Veuillez ajouter l'url</mat-error>
+          </mat-form-field>
+          <div class="mx-1 col-md-1" style="float: right;">
+            <img [src]="variante.controls['url'].value" alt="" style="height: 50px;">
+          </div>
+          <div class="mx-1 col-md-1" style="float: right;">
+            <img [src]="variante.controls['videoPreviewUrl'].value" alt="" style="height: 50px;">
+          </div>
+
+          <button class="clear-btn" mat-icon-button color="warn" aria-label="Effacer la variante"
+            (click)="removeItem(standVariantes, i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mt-2">
+      <button class="mx-3" mat-raised-button color="primary" (click)="createItemVariantType(standVariantes)">
+        Nouveau
+      </button>
+      <button [disabled]="isSaving$ | async" mat-button color="primary" (click)="validateItems(standVarianteForm)">
+        Valider
+        <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+        </mat-spinner>
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- mob -->
+  <mat-expansion-panel class="mx-3 my-2">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Mob
+        <span *ngIf="mob.length" class="custom-badge">{{
+          mob.length ? mob.length : ""
+          }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- mob content -->
+    <div [formGroup]="mobForm">
+      <div formArrayName="mob" *ngFor="let mobItem of mob.controls; let i = index">
+        <div [formGroupName]="i" class="col-md-12 type-container">
+          <mat-form-field class="mx-1 col-md-3" appearance="outline">
+            <mat-label>nom mob</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error class="my-1" *ngIf="checkError(mobItem, 'name', 'required')">Veuillez ajouter le nom</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>Type de stand</mat-label>
+            <mat-select formControlName="idTypes">
+              <mat-option *ngFor="let item of types" [value]="item._id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-5" appearance="outline">
+            <mat-label>url</mat-label>
+            <input matInput formControlName="url" />
+            <mat-error class="my-1" *ngIf="checkError(mobItem, 'url', 'required')">Veuillez ajouter l'url</mat-error>
+          </mat-form-field>
+
+          <button class="clear-btn" mat-icon-button color="warn" aria-label="Effacer la variante"
+            (click)="removeItem(mob, i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mt-2">
+      <button class="mx-3" mat-raised-button color="primary" (click)="createItem(mob)">
+        Nouveau
+      </button>
+      <button [disabled]="isSaving$ | async" mat-button color="primary" (click)="validateItems(mobForm)">
+        Valider
+        <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+        </mat-spinner>
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- personnage -->
+  <mat-expansion-panel class="mx-3 my-2">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Personnages
+        <span *ngIf="personnages.length" class="custom-badge">{{
+          personnages.length ? personnages.length : ""
+          }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- personnage content -->
+    <div [formGroup]="personnageForm">
+      <div formArrayName="personnages" *ngFor="let personnage of personnages.controls; let i = index">
+        <div [formGroupName]="i" class="col-md-12 type-container">
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>nom personnage</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error class="my-1" *ngIf="checkError(personnage, 'name', 'required')">Veuillez ajouter le nom
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-2" appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="types" multiple>
+              <mat-option *ngFor="let i of types" [value]="i.name">{{i.name}}</mat-option>
+            </mat-select>
+            <mat-error class="my-1" *ngIf="checkError(personnage, 'types', 'required')">Veuillez sélectionner un type
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mx-1 col-md-5" appearance="outline">
+            <mat-label>url</mat-label>
+            <input matInput formControlName="url" />
+            <mat-error class="my-1" *ngIf="checkError(personnage, 'url', 'required')">Veuillez ajouter l'url</mat-error>
+          </mat-form-field>
+
+          <div class="mx-1 col-md-2" style="float: right;">
+            <img [src]="personnage.controls['url'].value" alt="" style="height: 50px;">
+          </div>
+
+          <button class="clear-btn" mat-icon-button color="warn" aria-label="Effacer la variante"
+            (click)="removeItem(personnages, i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mt-2">
+      <button class="mx-3" mat-raised-button color="primary" (click)="createItemPersonnage(personnages)">
+        Nouveau
+      </button>
+      <button [disabled]="isSaving$ | async" mat-button color="primary" (click)="validateItems(personnageForm)">
+        Valider
+        <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+        </mat-spinner>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

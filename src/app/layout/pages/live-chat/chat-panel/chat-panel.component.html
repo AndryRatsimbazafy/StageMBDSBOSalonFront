@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="chat-message d-flex flex-column justify-content-between">
+    <ul #container class="chat-message-list p-4">
+      <ng-container *ngFor="let m of user?.messages; let i = index">
+        <li #messages [ngClass]="{ 'd-flex': !m?.fromSelf }" class="chat">
+          <ngx-avatar
+            *ngIf="!m?.fromSelf"
+            [ngClass]="{ hide: !user?.messages[i - 1]?.fromSelf && i != 0 }"
+            name="{{ user?.username }}"
+            size="30"
+          ></ngx-avatar>
+          <div class="content">
+            <p
+              *ngIf="!m?.fromSelf && m?.content"
+              class="chat-left px-3 py-2 ml-1"
+            >{{ m?.content }}</p>
+            <p
+              *ngIf="m?.fromSelf && m?.content"
+              class="chat-right px-3 py-2 ml-1"
+            >{{ m?.content }}</p>
+            <div *ngFor="let file of m?.files" class="file">
+              <a
+                class="file-content d-flex flex-column align-items-center justify-content-center"
+                *ngIf="!isFileAnImage(file)"
+                [ngClass]="m?.fromSelf ? 'file-right' : 'file-left'"
+                [href]="serverUrl + file"
+              >
+                <mat-icon>file_present</mat-icon>
+                <p class="file-name text-center">{{ file }}</p>
+              </a>
+
+              <div
+                *ngIf="loadingImg && isFileAnImage(file)"
+                [ngClass]="m?.fromSelf ? 'file-right' : 'file-left'"
+                class="file-content-img"
+              >
+                <ngx-skeleton-loader
+                  count="1"
+                  [theme]="{
+                    height: '100%'
+                  }"
+                ></ngx-skeleton-loader>
+              </div>
+              <ng-container *ngIf="isFileAnImage(file)">
+                <img
+                  (load)="onImageLoaded()"
+                  class="file-content-img"
+                  [ngClass]="m?.fromSelf ? 'file-right' : 'file-left'"
+                  [hidden]="loadingImg"
+                  [src]="serverUrl + file"
+                  alt=""
+                  lightbox
+                />
+              </ng-container>
+            </div>
+          </div>
+          <div class="right-bulbe" *ngIf="m.fromUnsent">
+            <div class="full-height">
+              <mat-icon>done</mat-icon>
+            </div>
+          </div>
+        </li>
+
+        <p
+          class="ml-2 date my-0"
+          [ngClass]="{ 'text-right': m?.fromSelf, 'text-left': !m?.fromSelf }"
+        >
+          {{ m?.upperDate }}
+        </p>
+      </ng-container>
+
+      <!--  Unsent message display  -->
+      <ng-container *ngFor="let m of unsent; let i = index">
+        <li
+          #messages
+          
+          class="chat"
+          [class.unsent]="m.unsent"
+          *ngIf="m.unsent"
+        >
+          <div class="content">
+            <p class="chat-right px-3 py-2 ml-1" *ngIf="m?.content">{{ m?.content }}</p>
+            <div *ngFor="let file of m?.files" class="file">
+              <p class="chat-right chat-p">Envoi du fichier ...</p>
+            </div>
+          </div>
+
+          <div class="right-bulbe">
+            <div class="full-height">
+              <mat-icon>done</mat-icon>
+            </div>
+          </div>
+        </li>
+
+        <p class="ml-2 date my-0 text-right"
+        *ngIf="m.unsent"
+        >
+          {{ m?.upperDate }}
+        </p>
+      </ng-container>
+    </ul>
+  </div>
+</div>

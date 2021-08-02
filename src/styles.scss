@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@ctrl/ngx-emoji-mart/picker';
+
+html,
+body {
+  width: 100%;
+  height: 100% !important;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-drawer-container {
+  height: calc(100% - 65px);
+}
+
+.snackbar-success {
+    background-color: #b7d8b7 !important;
+    color: #212121 !important;
+}
+
+.snackbar-error {
+    background-color: #f8b7bd !important;
+    color: #212121 !important;
+}
+
+.snackbar-warn {
+    background-color: #ffe399 !important;
+    color: #212121 !important;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.configurator-btn {
+    background-color: #cb3a5f;
+    color: white !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-prefix .mat-icon-button .mat-icon, .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-icon-button .mat-icon {
+    font-size: xx-large !important;
+}
+
+.mat-form-field-fill {
+    display: block !important;
+}
+
+.cdk-overlay-pane {
+    max-width: 95vw !important;
+}
+
+button:focus {
+    outline: 0px solid transparent;
+}

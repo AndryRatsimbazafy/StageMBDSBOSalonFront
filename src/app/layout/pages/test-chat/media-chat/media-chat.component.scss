@@ -1,0 +1,63 @@
+app-media-chat {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    position: relative;
+    //background-color: black;
+
+    .close {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+    }
+
+    #video-grid {
+      .remote-video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      position: relative;
+      height: calc(100% - 80px);
+      width: 100%;
+    }
+
+    #self-video {
+      transform: rotateY(180deg);
+      height: 200px !important;
+      width: 270px !important;
+      background-color: #212121;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    .self-avatar {
+      position: absolute;
+      right: 90px;
+      bottom: 45px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      position: relative;
+      margin-right: auto;
+      background-color: black;
+    }
+
+    .sidebar {
+      background-color: white;
+      height: 100%;
+      min-width: 350px;
+    }
+
+    .footer {
+      width: 100%;
+    }
+  }
+}

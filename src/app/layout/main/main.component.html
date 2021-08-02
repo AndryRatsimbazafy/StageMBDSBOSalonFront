@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <div class="container-fluid d-flex h-100 justify-content-between align-items-center">
+    <div class="d-flex flex-column mr-5 logo justify-content-center">
+      <img src="assets/logo.PNG">
+    </div>
+    <div style="display: flex;">
+      <p style="margin-right: 1em;
+      font-size: smaller;">{{ displayIdentity }}</p>
+      <ngx-avatar [name]="displayIdentity" size="40"></ngx-avatar>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-drawer-container autosize>
+  <mat-drawer mode="side" opened>
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content class="p-4">
+    <perfect-scrollbar style="max-height: 100vh;">
+      <router-outlet></router-outlet>
+    </perfect-scrollbar>
+  </mat-drawer-content>
+</mat-drawer-container>

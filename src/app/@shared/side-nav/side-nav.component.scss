@@ -1,0 +1,26 @@
+app-side-nav {
+  .side-navigation {
+    display: flex;
+    flex-direction: column;
+    .nav-link {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 1em 1em;
+      //&:hover {
+      //  background-color: #f1f1f1 !important;
+      //}
+      outline: none;
+    }
+    .active-link {
+      background-color: #cb3a5f;
+      color: white;
+      border-radius: 0 75px 75px 0;
+    }
+    width: 250px;
+    position: fixed;
+    background-color: white !important;
+    border-radius: 4px;
+  }
+
+}

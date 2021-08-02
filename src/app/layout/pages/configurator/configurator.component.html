@@ -1,0 +1,201 @@
+<div>
+    <div *ngIf="(initial || (isLoading$ | async)); then notLoaded else loaded"></div>
+
+    <ng-template #loaded>
+        <div class="justify-content-center">
+            <div *ngIf="modifiable; then modifiableDiv else nonModifiableDiv"></div>
+
+            <ng-template #modifiableDiv>
+                <h2>Configurateur</h2>
+                <!-- STEPPER -->
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="typeFormGroup">
+                        <form [formGroup]="typeFormGroup">
+                            <ng-template matStepLabel>Type de stand</ng-template>
+                            <div>
+                                <h4>Nom de la société exposante</h4>
+                                <div class="card-inner-content">
+                                    <div *ngIf="loggedUser.role === 'admin' || loggedUser.role === 'superadmin'">
+                                        <mat-form-field style="width: 50em;" appearance="fill">
+                                            <mat-label>Société</mat-label>
+                                            <mat-select #mySelect (selectionChange)="onOptionsSelected(mySelect.value)"
+                                                formControlName="selectExp">
+                                                <mat-option *ngFor="let user of users" [value]="user?._id">
+                                                    {{ user?.companyName }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <p style="width: -webkit-fill-available; color: red;"
+                                            *ngIf="typeFormGroup.get('selectExp').touched && typeFormGroup.get('selectExp').hasError('required')">
+                                            Veuillez choisir une société exposante
+                                        </p>
+                                    </div>
+                                    <div *ngIf="loggedUser.role === 'exposant'">
+                                        <div #inputText class="form__group">
+                                            <input type="text" class="form__input" [value]="loggedUser.companyName"
+                                                placeholder="Votre société n'est pas encore configurée!
+                                                Vauillez contacter l'administrateur" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0; margin-top: 1.5em;">Surface</h4>
+                                <div class="card-inner-content">
+                                    <app-card-checkable class="card-element"
+                                        *ngFor="let item of content.types; let i = index" [title]="surfaces[i]"
+                                        [imagesource]="item?.url" [checked]="item?.selected"
+                                        (checkEvent)="toggle($event, item, 'type')">
+                                    </app-card-checkable>
+                                </div>
+                                <p style="width: -webkit-fill-available; color: red;"
+                                    *ngIf="typeFormGroup.get('color').touched && typeFormGroup.get('surface').hasError('required')">
+                                    Veuillez choisir une surface
+                                </p>
+
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0; margin-top: 1.5em;">Sélectionnez votre couleur</h4>
+                                <mat-form-field>
+                                    <mat-label></mat-label>
+                                    <input matInput [ngxMatColorPicker]="picker" formControlName="color"
+                                        [disabled]="disabled">
+                                    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                                    <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color">
+                                    </ngx-mat-color-picker>
+                                </mat-form-field>
+                                <p style="width: -webkit-fill-available; color: red;"
+                                    *ngIf="typeFormGroup.get('color').touched  && typeFormGroup.get('color').invalid">
+                                    Veuillez choisir une couleur valide
+                                </p>
+                                <p style="width: -webkit-fill-available;">*votre choix de coloris s'appliquera sur les
+                                    frontons supérieurs du stand</p>
+                            </div>
+                            <div>
+                                <button mat-stroked-button color="primary" matStepperNext
+                                    (click)="submitSingleForm(typeFormGroup)">Suivant</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="varianteFormGroup">
+                        <form [formGroup]="varianteFormGroup">
+                            <ng-template matStepLabel>Sélectionnez votre variante de stand</ng-template>
+                            <p>Cliquez sur l'image pour agrandir</p>
+                            <div (deferLoad)="loadVariantImages = true" class="card-group">
+                                <div class="card-inner-content">
+                                    <ng-container *ngIf="loadVariantImages">
+                                        <app-card-checkable class="card-element" *ngFor="let item of content.variantes;"
+                                            [imagesource]="item?.url" [checked]="item?.selected"
+                                            (checkEvent)="toggle($event, item, 'variante')">
+                                        </app-card-checkable>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                            <p style="width: -webkit-fill-available; color: red;"
+                                *ngIf="varianteFormGroup.get('variant').touched && varianteFormGroup.get('variant').hasError('required')">
+                                Veuillez choisir une variante de stand
+                            </p>
+                            <div class="btn-container">
+                                <button mat-stroked-button matStepperPrevious>Retour</button>
+                                <button mat-stroked-button color="primary" (click)="submitSingleForm(varianteFormGroup)"
+                                    matStepperNext>Suivant</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="mobFormGroup">
+                        <form [formGroup]="mobFormGroup">
+                            <ng-template matStepLabel>Sélectionnez votre choix de mobilier</ng-template>
+                            <p>Cliquez sur l'image pour agrandir</p>
+                            <div (deferLoad)="loadMobImages = true" class="card-group">
+                                <div class="card-inner-content">
+                                    <ng-container *ngIf="loadMobImages">
+                                        <app-card-checkable class="card-element" *ngFor="let item of content.mob;"
+                                            [imagesource]="item?.url" [checked]="item?.selected"
+                                            (checkEvent)="toggle($event, item, 'mob')">
+                                        </app-card-checkable>
+                                    </ng-container>
+
+
+                                </div>
+                            </div>
+                            <p style="width: -webkit-fill-available; color: red;"
+                                *ngIf="mobFormGroup.get('mob').touched && mobFormGroup.get('mob').hasError('required')">
+                                Veuillez choisir un mobilier
+                            </p>
+                            <div>
+                                <button mat-stroked-button matStepperPrevious>Retour</button>
+                                <button mat-stroked-button color="primary" (click)="submitSingleForm(mobFormGroup)"
+                                    matStepperNext>Suivant</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="personnageFormGroup">
+                        <form [formGroup]="personnageFormGroup">
+                            <ng-template matStepLabel>Sélectionnez vos personnages</ng-template>
+                            <p>Cliquez sur l'image pour agrandir</p>
+                            <div (deferLoad)="loadPersoImages = true" class="card-group">
+                                <div class="card-inner-content">
+                                    <ng-container *ngIf="loadPersoImages">
+
+                                        <app-card-checkable class="card-element"
+                                            *ngFor="let item of content.personnages;" [imagesource]="item?.url"
+                                            [checked]="item?.selected" [uncheckable]="item?.uncheckable"
+                                            (checkEvent)="toggle($event, item, 'personnage')">
+                                        </app-card-checkable>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                            <div>
+                                <p *ngIf="!maxReached">Vous pouvez sélectionner {{ maxPerso }} personnages pour ce type
+                                    de
+                                    stand.</p>
+                                <p style="color: tan;" *ngIf="maxReached">Vous avez sélectionné le maximum de
+                                    personnages
+                                    pour ce type de stand</p>
+                            </div>
+                            <div>
+                                <button mat-stroked-button matStepperPrevious>Retour</button>
+                                <button mat-stroked-button color="primary"
+                                    (click)="submitSingleForm(personnageFormGroup)" matStepperNext>Suivant</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Validation</ng-template>
+                        <p> Vous êtes satisfait de votre choix, vous pouvez maintenant valider.</p>
+                        <div>
+                            <button mat-stroked-button matStepperPrevious>Retour</button>
+                            <div *ngIf="isSaving$ | async; then saving else notSaving"></div>
+                            <ng-template #saving>
+                                <div style="float: right;">
+                                    <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+                                    </mat-spinner>
+                                </div>
+                            </ng-template>
+                            <ng-template #notSaving>
+                                <button mat-stroked-button color="primary"
+                                    [disabled]="!typeFormGroup.valid || !validSelection" (click)="submit()">
+                                    Valider
+                                </button>
+                                <p style="color: red;" *ngIf="errorMessage">{{ errorMessage }}</p>
+                            </ng-template>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </ng-template>
+
+            <ng-template #nonModifiableDiv>
+                <app-configurator-confirmed [room]="room" [companyName]="companyName"></app-configurator-confirmed>
+            </ng-template>
+        </div>
+    </ng-template>
+
+    <ng-template #notLoaded>
+        <div class="justify-content-center d-flex">
+            <mat-spinner *ngIf="isLoading$ | async" diameter="100">
+            </mat-spinner>
+        </div>
+    </ng-template>
+</div>

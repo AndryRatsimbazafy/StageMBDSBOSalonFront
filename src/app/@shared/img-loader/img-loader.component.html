@@ -1,0 +1,27 @@
+<div
+  style="max-height: 100px"
+  *ngIf="loading"
+  class="loadingio-spinner-spinner-hm2u237mkks"
+>
+  <div class="ldio-9qtitc2ku">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<img
+  style="max-height: 100px"
+  [hidden]="loading"
+  (load)="onLoad()"
+  (click)="imgClicked()"
+  src="{{ source }}"
+/>

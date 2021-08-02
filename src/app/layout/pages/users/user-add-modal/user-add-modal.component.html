@@ -1,0 +1,81 @@
+<div style="width: 400px">
+  <h1>Ajouter un utilisateur</h1>
+  <form [formGroup]="AccountAddForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>nom</mat-label>
+      <input matInput formControlName="lastName"/>
+      <mat-error
+        *ngIf="AccountAddForm.get('lastName').touched && AccountAddForm.get('lastName').hasError('required')">
+        Veuillez entrer un nom
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>prénom</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error
+        *ngIf="AccountAddForm.get('firstName').touched && AccountAddForm.get('firstName').hasError('required')">
+        Veuillez entrer un prénom
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="AccountAddForm.get('email').invalid">{{
+        getErrorMessage()
+        }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>nom de la société</mat-label>
+      <input matInput formControlName="companyName"
+        [readonly]="account.role=='exposant'" />
+      <mat-error
+        *ngIf="AccountAddForm.get('companyName').touched && AccountAddForm.get('companyName').hasError('required')">
+        Veuillez entrer un nom
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <!-- <mat-form-field appearance="fill" class="mat-form-field-fill">
+      <mat-label>numéro de stand</mat-label>
+      <input matInput formControlName="standNumber" type="number" (keyup)="existStandNumber()" (change)="existStandNumber()"
+      [readonly]="account.role==='exposant'"/>
+      <mat-error
+        *ngIf="AccountAddForm.get('standNumber').touched && AccountAddForm.get('standNumber').hasError('required')">
+        Veuillez entrer un numéro de stand
+      </mat-error>
+    </mat-form-field> 
+    <br />-->
+    <mat-form-field>
+      <mat-label> Role :</mat-label>
+      <mat-select formControlName="role" (selectionChange)="existStandNumber()">
+        <mat-option *ngIf="account?.role === 'superadmin'" value="admin">admin</mat-option>
+        <mat-option *ngIf="account?.role === 'admin' || account?.role === 'superadmin'" value="exposant">exposant</mat-option>
+        <mat-option *ngIf="account?.role === 'exposant'" value="commercial">commercial</mat-option>
+        <mat-option *ngIf="account?.role === 'superadmin' || account?.role === 'admin'" value="coach">coach</mat-option>
+      </mat-select>
+      <mat-error *ngIf="AccountAddForm.get('role').invalid">{{
+        getErrorMessage()
+        }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-checkbox class="example-margin" [formControlName]="'active'">active</mat-checkbox>
+    <br />
+    <p style="color: red" *ngIf="serverError">
+      <mat-icon color="warning">warning</mat-icon>
+      Server Error: This is not your fault. Please give us some time to fix the
+      problem
+    </p>
+    <br />
+    <p style="color: red">
+      {{ invalidMessage }}
+    </p>
+    <br />
+    <button [disabled]="(isSaving$ | async) || invalid" mat-raised-button color="primary" style="float: right">
+      Ajouter
+      <mat-spinner *ngIf="isSaving$ | async" diameter="20" class="float-right m-2">
+      </mat-spinner>
+    </button>
+  </form>
+</div>

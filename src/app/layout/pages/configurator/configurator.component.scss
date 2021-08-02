@@ -1,0 +1,60 @@
+.card-group {
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+.card-group h4 {
+    width: -webkit-fill-available;
+}
+.card-element {
+    display: inline-flex;
+}
+
+.form__input {
+    font-family: "Roboto", sans-serif;
+    color: #333;
+    margin: 0 auto;
+    padding: 10px 5px;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    display: block;
+    border: 1px solid gainsboro;
+    border-bottom: 1px solid black;
+    transition: all 0.3s;
+    min-width: 23em;
+}
+
+.form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+}
+
+.mat-stroked-button {
+    margin-right: 1em;
+}
+
+.help-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.help-tooltip .help-tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.help-tooltip:hover .tooltiptext {
+    visibility: visible;
+}

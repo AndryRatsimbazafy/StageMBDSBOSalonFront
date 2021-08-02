@@ -1,0 +1,19 @@
+table {
+    width: 100%
+}
+
+.color {
+    display: block;
+    width: 75%;
+    height: 5px;
+}
+
+.table-container {
+    height: 63vh;
+    overflow: auto;
+}
+
+.sticky-paginator {
+    position: sticky;
+    bottom: 0;
+}

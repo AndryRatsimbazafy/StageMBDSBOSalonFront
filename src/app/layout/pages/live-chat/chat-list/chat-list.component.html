@@ -1,0 +1,5 @@
+<ul class="user-list px-0">
+    <li [ngClass]="{'active': activeUser == user}"  class="user py-3 px-1" *ngFor="let user of userList" (click)="selectUser(user)">
+        <app-chat-user  [user]="user"></app-chat-user>
+    </li>
+</ul>

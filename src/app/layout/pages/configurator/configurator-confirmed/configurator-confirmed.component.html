@@ -1,0 +1,30 @@
+<h2>{{ companyName }}</h2>
+<div>
+    <div class="previewContainer">
+
+        <app-simple-card-clickable class="card-element" [image]="room.type.url" [title]="'Type de stand :'"
+            [value]="room.type.name"></app-simple-card-clickable>
+
+        <app-simple-card-clickable class="card-element" [image]="room.variant.url" [title]="'Variante de stand :'"
+            [value]="room.variant.name"></app-simple-card-clickable>
+
+        <mat-card class="card-element card-color">
+            <div>
+                <div [style.background]="room.color"></div>
+            </div>
+            <mat-card-content>
+                <p> <b>Couleur : </b> {{ room.color }}</p>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div style="max-width: 60vw;">
+        <app-simple-card-clickable class="card-element" [image]="room.mob.url" [title]="'Mobilier :'"
+            [value]="room.mob.name"></app-simple-card-clickable>
+    </div>
+    <div class="previewContainer" style="grid-template-columns: repeat(4, 1fr);">
+        <app-simple-card-clickable *ngFor="let item of room.characters, let i = index;" class="card-element"
+            [image]="item.url" [title]="'Personnage #'+ (i+1) + ':'" [value]="item.name"></app-simple-card-clickable>
+    </div>
+</div>
+<p style="font-size: small;">*Votre sélection n'est plus modifiable.</p>

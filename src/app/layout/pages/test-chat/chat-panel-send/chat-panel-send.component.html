@@ -1,0 +1,57 @@
+<div class="bottom ml-3">
+  <div *ngIf="showEmojiPicker" class="emoji-container">
+    <emoji-mart
+      color="#cb3a5f"
+      [darkMode]="false"
+      class="emoji-mart"
+      set="google"
+      (emojiSelect)="addEmoji($event)"
+      title="Ajouter un emoji…"
+    ></emoji-mart>
+  </div>
+
+  <div *ngIf="files.length" class="file-preview-container mx-0 row">
+    <ng-template ngFor let-file [ngForOf]="files" >
+      <div class="preview m-2">
+        <button (click)="removeFile(file)" class="close" mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+        <app-preview-card [file]="file"></app-preview-card>
+      </div>
+    </ng-template>
+
+  </div>
+
+  <div>
+    <div class="send-btn d-flex align-items-center">
+      <button (click)="toggleEmojiPicker()" class="btn emoticons d-flex">
+        <i class="material-icons">{{
+          showEmojiPicker ? "expand_more" : "insert_emoticon"
+        }}</i>
+      </button>
+      <textarea
+        #msgTextarea
+        [(ngModel)]="message"
+        rows="1"
+        (keydown)="keyDown($event)"
+        (keyup)="keyUp($event)"
+        class="message ml-2"
+        placeholder="Tapez un message"
+      ></textarea>
+
+      <input #fileInput name="file" (change)="onFileChange($event)" type="file" id="attachment">
+      <button mat-icon-button (click)="fileInput.click()">
+        <mat-icon>attachment</mat-icon>
+      </button>
+
+      <button
+        (click)="send()"
+        class="send-btn-icon"
+        mat-icon-button
+        aria-label="Envoyer le message"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

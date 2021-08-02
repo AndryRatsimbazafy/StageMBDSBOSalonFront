@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <div id="media-buttons">
+    <button mat-fab [color]="!isMuted ? 'light' : 'warn'" (click)="audioClicked()">
+      <mat-icon *ngIf="!isMuted">mic_on</mat-icon>
+      <mat-icon *ngIf="isMuted">mic_off</mat-icon>
+    </button>
+    <button mat-fab color="light" class="call" (click)="callClicked()">
+      <mat-icon color="warn">call_end</mat-icon>
+    </button>
+    <button mat-fab [color]="!isVideoOff ? 'light' : 'warn'" (click)="videoClicked()">
+      <mat-icon *ngIf="!isVideoOff">videocam_on_outline</mat-icon>
+      <mat-icon *ngIf="isVideoOff">videocam_off</mat-icon>
+    </button>
+  </div>
+
+
+  <div mat-ripple fxLayout="column" fxLayoutAlign="center center" class="custom-round-button noselect"  (click)="startScreenSharing()">
+    <mat-icon>present_to_all</mat-icon>
+    <span>Share screen</span>
+  </div>
+</mat-toolbar>

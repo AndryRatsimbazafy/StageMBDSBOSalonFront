@@ -1,0 +1,297 @@
+mat-form-field mat-label {
+    margin-right: 5px;
+}
+
+mat-form-field > img {
+    width: 10em;
+    max-height: 8em;
+}
+
+.small-preview {
+    height: 5em;
+    max-width: 5em;
+    margin-bottom: 1em;
+}
+
+mat-form-field {
+    display: inline-flex;
+    max-height: 10em;
+    overflow-y: auto;
+}
+
+mat-form-field > div {
+    width: 80%;
+    margin-bottom: 1em;
+}
+
+mat-form-field + hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 100%;
+    background-color: darkgray;
+    height: 1px;
+}
+
+mat-label > h3 {
+    display: inline;
+    margin-right: 1em;
+}
+
+section {
+    max-width: var(--sectionWidth);
+    margin: 40px auto;
+    width: 97%;
+    color: gray;
+}
+
+summary {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    font-family: "Space Mono", monospace;
+    font-size: 18px;
+    transition: 0.3s;
+    border-bottom: 1px solid;
+    user-select: none;
+}
+
+summary:focus {
+    outline: 0px solid transparent;
+}
+
+details > div {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 100%;
+    user-select: none;
+    padding: 0 20px;
+    font-family: "Karla", sans-serif;
+    line-height: 1.5;
+}
+
+details > div > img {
+    align-self: flex-start;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+details > div > p {
+    flex: 1;
+}
+
+details[open] > summary {
+    color: black;
+}
+
+@media (min-width: 768px) {
+    details[open] > div > p {
+        opacity: 0;
+        animation-name: showContent;
+        animation-duration: 0.6s;
+        animation-delay: 0.2s;
+        animation-fill-mode: forwards;
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    details[open] > div {
+        animation-name: slideDown;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+
+    details[open] > div > img {
+        opacity: 0;
+        height: 100%;
+        margin: 0;
+        animation-name: showImage;
+        animation-duration: 0.3s;
+        animation-delay: 0.15s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        height: 0;
+        padding: 0;
+    }
+
+    to {
+        opacity: 1;
+        height: var(--contentHeight);
+        padding: 20px;
+    }
+}
+
+@keyframes showImage {
+    from {
+        opacity: 0;
+        clip-path: inset(50% 0 50% 0);
+        transform: scale(0.4);
+    }
+
+    to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes showContent {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.example-card img {
+    height: 10em;
+    width: auto;
+    opacity: 1;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.middle {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.example-card:hover img {
+    opacity: 0.3;
+}
+
+.example-card:hover .middle {
+    opacity: 1;
+}
+
+.example-card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.example-card video {
+    height: 10em;
+    width: auto;
+    min-width: 150px;
+}
+
+.example-card iframe {
+    height: 10em;
+    width: auto;
+}
+
+.auto-align-example-card {
+    margin-top: 10px;
+    height: 300px;
+    overflow-y: auto;
+    display: grid;
+    padding: 5px 5px 0px 5px;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+    gap: 5px 1%;
+}
+
+.textBox {
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+}
+.textBox span {
+    position: absolute;
+    white-space: nowrap;
+    transform: translateX(0);
+    transition: 1s;
+}
+.textBox:hover span {
+    transform: translateX(calc(100px - 100%));
+}
+
+.delete-corner {
+    right: 0px;
+    position: absolute;
+    top: -1em;
+}
+
+.big-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 200em;
+    padding: 1px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+    line-break: auto;
+    display: block;
+    z-index: 1050;
+    padding: 1em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popover.bottom {
+    margin-top: 10px;
+}
+
+.popover-default.bottom > .arrow:after {
+    border-bottom-color: #f7f7f7;
+}
+.popover.bottom > .arrow:after {
+    top: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-width: 0;
+    border-bottom-color: #fff;
+}
+.popover > .arrow:after {
+    content: "";
+    border-width: 10px;
+}
+.popover > .arrow,
+.popover > .arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.medium-pb {
+    width: 10em !important;
+    margin: auto auto auto 1em;
+}

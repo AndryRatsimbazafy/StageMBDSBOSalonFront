@@ -1,0 +1,18 @@
+<div fxFlex fxLayout="column" fxFlexAlign="center" height="100%" fxLayoutGap="15px">
+  <div fxFlex fxLayout="row" fxFlexAlign="center">
+    <ngx-avatar [name]="data.name"></ngx-avatar>
+  </div>
+  <div fxFlexAlign="center">
+    <p class="mat-display-1">Appel entrant...</p>
+  </div>
+  <div fxFlexAlign="center">
+    <button mat-button color="warn" (click)="cancel()">
+      <mat-icon>call_end</mat-icon>
+      Ignorer
+    </button>
+    <button mat-button color="accent" (click)="answer()">
+      <mat-icon>call</mat-icon>
+      Répondre
+    </button>
+  </div>
+</div>

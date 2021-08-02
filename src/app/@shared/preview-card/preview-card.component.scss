@@ -1,0 +1,32 @@
+.file {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+
+  .file-name {
+    height: 23px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 116px;
+  }
+}
+
+
+.img {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  .skeleton {
+    width: 100%;
+    height: 100%;
+  }
+}
+

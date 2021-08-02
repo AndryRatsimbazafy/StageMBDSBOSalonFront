@@ -1,0 +1,30 @@
+<form [formGroup]="periodForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input
+      matInput
+      [ngxMatDatetimePicker]="picker1"
+      placeholder="Date de début du salon"
+      formControlName="start"
+      required
+    />
+
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+  </mat-form-field>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <mat-form-field>
+    <input
+      matInput
+      [ngxMatDatetimePicker]="picker2"
+      placeholder="Date de fin du salon"
+      formControlName="end"
+      required
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="submit" [disabled]="!periodForm.valid">Submit</button>
+  <p>{{ message }}</p>
+</form>

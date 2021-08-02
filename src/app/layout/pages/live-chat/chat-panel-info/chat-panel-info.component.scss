@@ -1,0 +1,14 @@
+.video-call-panel {
+  height: 100%;
+    box-shadow: 0 4px 2px -2px gray;
+    .btn-call {
+      transition: all .2s ease-in-out;
+      &:hover {
+        color: #cb3a5f !important;
+      }
+    }
+
+    // .mat-icon {
+    //   font-size: 20px;
+    // }
+  }
