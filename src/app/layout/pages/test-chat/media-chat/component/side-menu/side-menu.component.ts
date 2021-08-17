@@ -43,7 +43,7 @@ const { RTCPeerConnection, RTCSessionDescription } = window;
           position: 'absolute',
           right: 0,
           bottom: 0,
-          background: '#cb3a5f',
+          background: '#FD4F05',
           padding: '5px 13px',
           borderRadius: '10px',
           color: '#fff',

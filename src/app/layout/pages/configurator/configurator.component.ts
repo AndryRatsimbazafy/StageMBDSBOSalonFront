@@ -198,7 +198,7 @@ export class ConfiguratorComponent implements OnInit, OnDestroy {
           action: 'Confirm',
           message: `Vous ne pourrez plus modifier votre sélection. Êtes-vous certains(es) de vouloir confirmer?`,
           icon: 'warning',
-          color: '#cb3a5f'
+          color: '#FD4F05'
         },
       });
 

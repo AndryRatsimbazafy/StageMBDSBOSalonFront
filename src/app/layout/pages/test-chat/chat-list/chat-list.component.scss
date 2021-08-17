@@ -7,12 +7,12 @@
         padding-bottom: 15px;
         transition: border-bottom .1s ease-in-out;
         &:hover {
-            border-bottom: 2px solid #cb3a5f;         
+            border-bottom: 2px solid #FD4F05;         
             cursor: pointer;
         }
     }
 
     .user.active {
-        border-bottom: 2px solid #cb3a5f;
+        border-bottom: 2px solid #FD4F05;
     }
 }
