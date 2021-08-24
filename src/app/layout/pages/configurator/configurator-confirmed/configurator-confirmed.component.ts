@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
 
 @Component({
   selector: 'app-configurator-confirmed',

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListeConfigurationComponent } from './liste-configuration.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ComponentModule } from 'src/app/@shared/component.module';
+import { ComponentModule } from 'src/app/shared/component.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({

@@ -5,19 +5,19 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { ContentEntry, ContentValue } from 'src/app/@core/schema/content.schema';
-import { RoomEntry, RoomState } from 'src/app/@core/schema/room.shema';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
-import { getContentRequested } from 'src/app/@core/store/content/content.action';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { ContentEntry, ContentValue } from 'src/app/core/schema/content.schema';
+import { RoomEntry, RoomState } from 'src/app/core/schema/room.shema';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
+import { getContentRequested } from 'src/app/core/store/content/content.action';
 import {
   selectAllContents, selectDefaultContent,
-} from 'src/app/@core/store/content/content.selector';
-import { addRoomRequested, getRoomByUserRequested } from 'src/app/@core/store/room/room.action';
-import { selectAllRooms, selectRoom, selectRoomError, selectRoomLoading, selectRoomSaving, selectRoomState, selectUserRoom } from 'src/app/@core/store/room/room.selector';
-import { exposantLoadRequested, exposantNotSetLoadRequested, userLoadRequested, userUpdateRequested } from 'src/app/@core/store/user/user.action';
-import { selectAllUsers } from 'src/app/@core/store/user/user.selector';
-import { ConfirmDialogComponent } from 'src/app/@shared/confirm-dialog/confirm-dialog.component';
+} from 'src/app/core/store/content/content.selector';
+import { addRoomRequested, getRoomByUserRequested } from 'src/app/core/store/room/room.action';
+import { selectAllRooms, selectRoom, selectRoomError, selectRoomLoading, selectRoomSaving, selectRoomState, selectUserRoom } from 'src/app/core/store/room/room.selector';
+import { exposantLoadRequested, exposantNotSetLoadRequested, userLoadRequested, userUpdateRequested } from 'src/app/core/store/user/user.action';
+import { selectAllUsers } from 'src/app/core/store/user/user.selector';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { ConfiguratorConfirmedPreviewDialogComponent } from './configurator-confirmed-preview-dialog/configurator-confirmed-preview-dialog.component';
 
 @Component({

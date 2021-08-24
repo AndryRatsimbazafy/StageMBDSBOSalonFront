@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { TimerService } from 'src/app/@core/service/timer.service';
+import { TimerService } from 'src/app/core/service/timer.service';
 
 @Component({
   selector: 'app-timer',

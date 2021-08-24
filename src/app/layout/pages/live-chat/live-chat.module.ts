@@ -13,7 +13,7 @@ import { ChatPanelSendComponent } from './chat-panel-send/chat-panel-send.compon
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { MediaChatModule } from './media-chat/media-chat.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ComponentModule } from 'src/app/@shared/component.module';
+import { ComponentModule } from 'src/app/shared/component.module';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';

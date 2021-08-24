@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from 'src/app/@core/schema/chat-user.schema';
+import { User } from 'src/app/core/schema/chat-user.schema';
 
 @Component({
   selector: 'app-chat-list',

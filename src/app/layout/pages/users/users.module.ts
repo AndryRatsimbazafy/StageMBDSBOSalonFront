@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AvatarModule } from 'ngx-avatar';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ComponentModule } from 'src/app/@shared/component.module';
+import { ComponentModule } from 'src/app/shared/component.module';
 import { UserDetailModalComponent } from './user-detail-modal/user-detail-modal.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 

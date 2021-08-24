@@ -5,13 +5,13 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
-import { addRoomRequested, getRoomByUserRequested } from 'src/app/@core/store/room/room.action';
-import { selectAllRooms, selectUserRoom } from 'src/app/@core/store/room/room.selector';
-import { exposantLoadRequested, getUserByStandRequested, userAddedReset, userSaveRequested } from 'src/app/@core/store/user/user.action';
-import { selectListEntries, selectUserByStand, selectUserErrorMessage, selectUserLoading, selectUserSaved, selectUserSaving } from 'src/app/@core/store/user/user.selector';
-import { selectAccount, selectAccountErrorMessage } from '../../../../@core/store/account/account.selector';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
+import { addRoomRequested, getRoomByUserRequested } from 'src/app/core/store/room/room.action';
+import { selectAllRooms, selectUserRoom } from 'src/app/core/store/room/room.selector';
+import { exposantLoadRequested, getUserByStandRequested, userAddedReset, userSaveRequested } from 'src/app/core/store/user/user.action';
+import { selectListEntries, selectUserByStand, selectUserErrorMessage, selectUserLoading, selectUserSaved, selectUserSaving } from 'src/app/core/store/user/user.selector';
+import { selectAccount, selectAccountErrorMessage } from '../../../../core/store/account/account.selector';
 
 @Component({
   selector: 'app-user-add-modal',

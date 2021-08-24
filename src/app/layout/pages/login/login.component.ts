@@ -4,9 +4,9 @@ import { Observable, Subject } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { selectAccountErrorMessage, selectAccountLoading } from 'src/app/@core/store/account/account.selector';
-import * as AccountAction from 'src/app/@core/store/account/account.action';
-import { AccountState } from 'src/app/@core/schema/account.schema';
+import { selectAccountErrorMessage, selectAccountLoading } from 'src/app/core/store/account/account.selector';
+import * as AccountAction from 'src/app/core/store/account/account.action';
+import { AccountState } from 'src/app/core/schema/account.schema';
 
 enum DisplayMode {
   Login,

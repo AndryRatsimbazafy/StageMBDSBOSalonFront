@@ -1,25 +1,25 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { selectAllUsers } from 'src/app/@core/store/user/user.selector';
-import { ConfirmDialogComponent } from 'src/app/@shared/confirm-dialog/confirm-dialog.component';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { selectAllUsers } from 'src/app/core/store/user/user.selector';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { UserAddModalComponent } from './user-add-modal/user-add-modal.component';
 import { UserEditModalComponent } from './user-edit-modal/user-edit-modal.component';
-import * as userAction from 'src/app/@core/store/user/user.action';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
+import * as userAction from 'src/app/core/store/user/user.action';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { userUpdateRequested } from 'src/app/@core/store/user/user.action';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
-import { selectUserRoom } from 'src/app/@core/store/room/room.selector';
+import { userUpdateRequested } from 'src/app/core/store/user/user.action';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
+import { selectUserRoom } from 'src/app/core/store/room/room.selector';
 import {Column, Workbook} from 'exceljs';
 import * as fs from 'file-saver';
 import * as _ from 'lodash';
-import { getRoomByUserRequested } from 'src/app/@core/store/room/room.action';
+import { getRoomByUserRequested } from 'src/app/core/store/room/room.action';
 import {UserDetailModalComponent} from './user-detail-modal/user-detail-modal.component';
 @Component({
   selector: 'app-users',

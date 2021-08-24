@@ -5,24 +5,24 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import { Observable, observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
 import {
   assetSaveRequested, assetUpdateItemRequested, assetUpdateRequested, uploadRequested
-} from 'src/app/@core/store/asset/asset.action';
+} from 'src/app/core/store/asset/asset.action';
 import {
   selectAsset,
   selectAssetError, selectAssetLoading,
   selectAssetUpload, selectAssetUploadedBytes
-} from 'src/app/@core/store/asset/asset.selector';
-import { getContentRequested } from 'src/app/@core/store/content/content.action';
-import { selectDefaultContent } from 'src/app/@core/store/content/content.selector';
-import { getRoomByUserRequested } from 'src/app/@core/store/room/room.action';
-import { selectUserRoom } from 'src/app/@core/store/room/room.selector';
+} from 'src/app/core/store/asset/asset.selector';
+import { getContentRequested } from 'src/app/core/store/content/content.action';
+import { selectDefaultContent } from 'src/app/core/store/content/content.selector';
+import { getRoomByUserRequested } from 'src/app/core/store/room/room.action';
+import { selectUserRoom } from 'src/app/core/store/room/room.selector';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
-import { AssetEntry } from 'src/app/@core/schema/asset.schema';
+import { AssetEntry } from 'src/app/core/schema/asset.schema';
 
 @Component({
   selector: 'app-upload-assets',

@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccountModule } from 'src/app/@core/store/account/account.module';
+import { AccountModule } from 'src/app/core/store/account/account.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';

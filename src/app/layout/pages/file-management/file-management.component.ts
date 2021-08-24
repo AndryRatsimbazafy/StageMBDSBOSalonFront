@@ -5,23 +5,23 @@ import { select, Store } from '@ngrx/store';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { AssetEntry } from 'src/app/@core/schema/asset.schema';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
-import { SnackbarService } from 'src/app/@core/service/snackbar.service';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
-import { assetUpdateRequested, getAssetByExhibitorRequested } from 'src/app/@core/store/asset/asset.action';
-import { selectAsset, selectAssetLoading, selectAssetState, selectAssetUpload } from 'src/app/@core/store/asset/asset.selector';
-import { getRoomByUserRequested } from 'src/app/@core/store/room/room.action';
-import { selectRoomLoading, selectUserRoom } from 'src/app/@core/store/room/room.selector';
-import { exposantLoadRequested, exposantNotSetLoadRequested } from 'src/app/@core/store/user/user.action';
-import { selectAllUsers } from 'src/app/@core/store/user/user.selector';
-import { ConfirmDialogComponent } from 'src/app/@shared/confirm-dialog/confirm-dialog.component';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { AssetEntry } from 'src/app/core/schema/asset.schema';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
+import { SnackbarService } from 'src/app/core/service/snackbar.service';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
+import { assetUpdateRequested, getAssetByExhibitorRequested } from 'src/app/core/store/asset/asset.action';
+import { selectAsset, selectAssetLoading, selectAssetState, selectAssetUpload } from 'src/app/core/store/asset/asset.selector';
+import { getRoomByUserRequested } from 'src/app/core/store/room/room.action';
+import { selectRoomLoading, selectUserRoom } from 'src/app/core/store/room/room.selector';
+import { exposantLoadRequested, exposantNotSetLoadRequested } from 'src/app/core/store/user/user.action';
+import { selectAllUsers } from 'src/app/core/store/user/user.selector';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { environment } from 'src/environments/environment';
 import { UploadAssetsComponent } from './upload-assets/upload-assets.component';
-import * as roomActions from '../../../@core/store/room/room.action';
-import { AuthAPIService } from 'src/app/@core/service/auth.api.service';
-import { getNewAccessTokenRequested } from 'src/app/@core/store/account/account.action';
+import * as roomActions from '../../../core/store/room/room.action';
+import { AuthAPIService } from 'src/app/core/service/auth.api.service';
+import { getNewAccessTokenRequested } from 'src/app/core/store/account/account.action';
 
 @Component({
   selector: 'app-file-management',

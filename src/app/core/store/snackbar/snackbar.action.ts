@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { SnackbarConfig } from 'src/app/@core/schema/snackbar.schema';
+import { SnackbarConfig } from 'src/app/core/schema/snackbar.schema';
 const source = 'Snackbar';
 
 export const showSnackbar = createAction(

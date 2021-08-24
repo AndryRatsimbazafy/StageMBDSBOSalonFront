@@ -8,10 +8,10 @@ import {
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountEntry } from 'src/app/@core/schema/account.schema';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
-import { getUserByStandRequested, userUpdateRequested } from 'src/app/@core/store/user/user.action';
-import { selectUserByStand, selectUserErrorMessage, selectUserLoading, selectUserSaving } from 'src/app/@core/store/user/user.selector';
+import { AccountEntry } from 'src/app/core/schema/account.schema';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
+import { getUserByStandRequested, userUpdateRequested } from 'src/app/core/store/user/user.action';
+import { selectUserByStand, selectUserErrorMessage, selectUserLoading, selectUserSaving } from 'src/app/core/store/user/user.selector';
 
 @Component({
   selector: 'app-user-edit-modal',

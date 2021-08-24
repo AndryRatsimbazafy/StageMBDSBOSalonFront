@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import * as _ from 'lodash';
-import { SnackbarState } from 'src/app/@core/schema/snackbar.schema';
+import { SnackbarState } from 'src/app/core/schema/snackbar.schema';
 
 export const getRouteState = createFeatureSelector<SnackbarState>('snackbar');
 

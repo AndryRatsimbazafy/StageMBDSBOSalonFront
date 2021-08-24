@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
 import { decode } from 'querystring';
-import { accountLogoutRequested } from 'src/app/@core/store/account/account.action';
-import { selectAccount } from 'src/app/@core/store/account/account.selector';
+import { accountLogoutRequested } from 'src/app/core/store/account/account.action';
+import { selectAccount } from 'src/app/core/store/account/account.selector';
 
 @Component({
   selector: 'app-side-nav',

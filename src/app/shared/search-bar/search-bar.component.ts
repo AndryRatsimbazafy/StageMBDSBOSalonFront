@@ -41,6 +41,9 @@ export class SearchBarComponent implements OnInit {
               case 'email':
                 if (list.email) { return list.email.toLowerCase().indexOf(filterString.toLowerCase()) !== -1; }
                 break;
+              case 'role' : 
+              if (list.role) { return list.role.toLowerCase().indexOf(filterString.toLowerCase()) !== -1; }
+                break;
             }
           }
 

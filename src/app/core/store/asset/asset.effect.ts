@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import * as assetAction from 'src/app/@core/store/asset/asset.action';
+import * as assetAction from 'src/app/core/store/asset/asset.action';
 import { SnackbarService } from '../../service/snackbar.service';
 import { UploadAssetsAPIService } from '../../service/upload-assets.api.service';
 import { AuthAPIService } from '../../service/auth.api.service';

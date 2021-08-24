@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UserManagementAPIService } from '../../service/user-management.api.service';
-import * as userAction from 'src/app/@core/store/user/user.action';
+import * as userAction from 'src/app/core/store/user/user.action';
 import { SnackbarService } from '../../service/snackbar.service';
 
 @Injectable()

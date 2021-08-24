@@ -4,12 +4,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { RoomEntry } from 'src/app/@core/schema/room.shema';
-import { getAllRoomsRequested } from 'src/app/@core/store/room/room.action';
+import { RoomEntry } from 'src/app/core/schema/room.shema';
+import { getAllRoomsRequested } from 'src/app/core/store/room/room.action';
 import {
   selectAllRooms,
   selectRoomLoading,
-} from 'src/app/@core/store/room/room.selector';
+} from 'src/app/core/store/room/room.selector';
 
 @Component({
   selector: 'app-liste-configuration',

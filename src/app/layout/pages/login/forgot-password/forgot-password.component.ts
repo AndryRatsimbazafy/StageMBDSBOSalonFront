@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountState } from 'src/app/@core/schema/account.schema';
-import { selectAccountLoading, selectAccountErrorMessage } from 'src/app/@core/store/account/account.selector';
-import * as AccountAction from 'src/app/@core/store/account/account.action';
+import { AccountState } from 'src/app/core/schema/account.schema';
+import { selectAccountLoading, selectAccountErrorMessage } from 'src/app/core/store/account/account.selector';
+import * as AccountAction from 'src/app/core/store/account/account.action';
 
 @Component({
   selector: 'app-forgot-password',

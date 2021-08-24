@@ -5,8 +5,8 @@ import {
   snackbarWARN,
   snackbarERROR,
   snackbarSUCCESS
-} from 'src/app/@core/schema/snackbar.schema';
-import { showSnackbar } from 'src/app/@core/store/snackbar/snackbar.action';
+} from 'src/app/core/schema/snackbar.schema';
+import { showSnackbar } from 'src/app/core/store/snackbar/snackbar.action';
 
 @Injectable({
   providedIn: 'root'

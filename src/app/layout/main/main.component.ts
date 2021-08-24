@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountEntry } from '../../@core/schema/account.schema';
+import { AccountEntry } from '../../core/schema/account.schema';
 import { select, Store } from '@ngrx/store';
-import { selectAccount } from '../../@core/store/account/account.selector';
-import { accountLogoutRequested, getUserRequested } from '../../@core/store/account/account.action';
+import { selectAccount } from '../../core/store/account/account.selector';
+import { accountLogoutRequested, getUserRequested } from '../../core/store/account/account.action';
 import decode from 'jwt-decode';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

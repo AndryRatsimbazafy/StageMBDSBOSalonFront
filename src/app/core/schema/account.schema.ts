@@ -13,6 +13,9 @@ export interface AccountEntry {
     _id?: string;
     email: string;
     password: string;
+    age: number,
+    gender: string,
+    birthDate: Date,
     role: string;
     companyName: string;
     active: boolean;

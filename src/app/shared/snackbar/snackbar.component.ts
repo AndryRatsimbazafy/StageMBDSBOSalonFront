@@ -2,8 +2,8 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { selectSnackbarShow } from 'src/app/@core/store/snackbar/snackbar.selector';
-import { closeSnackbar } from 'src/app/@core/store/snackbar/snackbar.action';
+import { selectSnackbarShow } from 'src/app/core/store/snackbar/snackbar.selector';
+import { closeSnackbar } from 'src/app/core/store/snackbar/snackbar.action';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

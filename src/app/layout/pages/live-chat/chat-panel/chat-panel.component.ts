@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { User } from 'src/app/@core/schema/chat-user.schema';
+import { User } from 'src/app/core/schema/chat-user.schema';
 import { environment } from 'src/environments/environment';
 
 @Component({

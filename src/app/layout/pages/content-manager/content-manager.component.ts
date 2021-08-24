@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { ContentEntry } from 'src/app/@core/schema/content.schema';
+import { ContentEntry } from 'src/app/core/schema/content.schema';
 import {
   addContentRequested,
   getContentRequested,
   updateContentRequested,
-} from 'src/app/@core/store/content/content.action';
+} from 'src/app/core/store/content/content.action';
 import {
   selectAllContents,
   selectContentMob,
@@ -17,7 +17,7 @@ import {
   selectContentTypes,
   selectContentVariantes,
   selectDefaultContent,
-} from 'src/app/@core/store/content/content.selector';
+} from 'src/app/core/store/content/content.selector';
 
 @Component({
   selector: 'app-content-manager',
