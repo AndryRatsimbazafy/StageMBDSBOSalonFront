@@ -146,7 +146,7 @@ export class FileManagementComponent implements OnInit, OnDestroy {
   openElement(item): void {
     if (item.type === 'file') {
       window.open(
-        `${environment.SERVER_URL}/public/data/assets/${this.asset.idExposant}/${item.url}`,
+        `https://dashboard.w3dsalonvituelreno2021.fr/public/data/assets/${this.asset.idExposant}/${item.url}`,
         '_blank'
       );
     } else if (item.type === 'return') {
