@@ -1,1 +1,194 @@
-<p>reporting works!</p>
+
+<div class="tabs">
+    <input type="radio" id="tab1" name="tab-control" checked>
+    <input type="radio" id="tab2" name="tab-control">
+    <input type="radio" id="tab3" name="tab-control">
+    <ul>
+        <li title="Contenu">
+            <label for="tab1" role="button">
+                <span>Contenu</span>
+            </label>
+        </li>
+        <li title="Activites">
+            <label for="tab2" role="button">
+                <span>Activités</span>
+            </label>
+        </li>
+        <li title="Utilisateurs">
+            <label for="tab3" role="button">
+                <span>Utilisateurs</span>
+            </label>
+        </li>
+    </ul>
+
+    <div class="slider">
+    </div>
+    <div class="content">
+
+        <!-- Contenu -->
+        <section>
+            <div style="display: flex; margin-bottom: 4em;">
+                <div style="width: 50%;">
+                    <h4 class="dash-h4">Nombre de visite par type d'interaction</h4>
+                    <div style="display: block;">
+                        <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                        </canvas>
+                    </div>
+                </div>
+                <div style="width: 50%;">
+                    <h4 class="dash-h4">Nombre de visite par interaction par tranche d'ages</h4>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions"
+                            [labels]="radarChartLabels" [chartType]="radarChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom: 4em;">
+                <h4 class="dash-h4">Visite par exposant</h4>
+                <div class="table">
+                    <div class="table-header">
+                        <div class="header__item">#</div>
+                        <div class="header__item">Exposant</div>
+                        <div class="header__item">Visites</div>
+                        <div class="header__item">Temps de visite (en heure)</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row" *ngFor="let item of contents; let i = index;">
+                            <div class="table-data">{{ i+1 }}</div>
+                            <div class="table-data">{{ item.exposantName }}</div>
+                            <div class="table-data">{{ item.visit }}</div>
+                            <div class="table-data">{{ (item.visitTime/3600).toFixed(2) }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activités -->
+        <section>
+            <div style="display: flex; margin-bottom: 4em;">
+                <div style="width: 60%;">
+                    <h4 class="dash-h4">Nombre de visite par contenu par heure</h4>
+                    <div style="display: block;">
+                        <canvas baseChart width="1000" height="400" [datasets]="lineChartData"
+                            [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
+                    </div>
+                </div>
+                <div style="width: 50%;">
+                    <h4 class="dash-h4">Visite par contenu par tranche d'ages </h4>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom: 4em;">
+                <h4 class="dash-h4">Visite par jour</h4>
+                <div class="table">
+                    <div class="table-header">
+                        <div class="header__item">N° jour</div>
+                        <div class="header__item">Date</div>
+                        <div class="header__item">Visite</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row">
+                            <div class="table-data">1</div>
+                            <div class="table-data">01/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["1"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">2</div>
+                            <div class="table-data">02/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["2"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">3</div>
+                            <div class="table-data">03/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["3"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">4</div>
+                            <div class="table-data">04/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["4"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">5</div>
+                            <div class="table-data">05/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["5"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">6</div>
+                            <div class="table-data">06/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["6"] }}</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data">7</div>
+                            <div class="table-data">07/09/2021</div>
+                            <div class="table-data">{{ dailyVisits["7"] }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; margin-bottom: 4em;">
+                <div style="width: 100%;">
+                    <h4 class="dash-h4">Temps de visite par Exposant</h4>
+                    <div style="display: block;">
+                        <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels"
+                            [legend]="polarAreaLegend" [chartType]="polarAreaChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Utilisateurs -->
+        <section>
+            <div style="margin-bottom: 4em;">
+                <div class="cards" style="display: flex; justify-content: space-between;">
+
+                    <div class=" card [ is-collapsed ] ">
+                        <div class="card__inner [ js-expander ]">
+                            <span>Utilisateurs</span>
+                            <p>637</p>
+                        </div>
+                    </div>
+                    <div class=" card [ is-collapsed ] ">
+                        <div class="card__inner [ js-expander ]">
+                            <span>Exposant</span>
+                            <p>18</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div style="display: flex; margin-bottom: 4em;">
+                <div style="width: 50%;">
+                    <h4 class="dash-h4">Utilisateurs par tranche d'âges</h4>
+                    <div style="display: block;">
+                        <div style="display: block;">
+                            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                                [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 50%;">
+                    <h4 class="dash-h4">Utilisateurs par tranche d'âges par sexe</h4>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels2"
+                            [options]="barChartOptions2" [plugins]="barChartPlugins2" [legend]="barChartLegend2"
+                            [chartType]="barChartType2">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { ReportingComponent } from './pages/reporting/reporting.component';
 import { TimerModule } from './pages/timer/timer.module';
 import { ChatTestComponent } from './pages/chat-test/chat-test.component';
 import { TestChatModule } from './pages/test-chat/test-chat.module';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [ReportingComponent],
   imports: [
@@ -25,7 +26,8 @@ import { TestChatModule } from './pages/test-chat/test-chat.module';
     ListeConfigurationModule,
     LiveChatModule,
     TimerModule,
-    TestChatModule
+    TestChatModule,
+    ChartsModule
   ],
 })
 export class LayoutModule {}

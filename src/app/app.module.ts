@@ -27,6 +27,7 @@ import { roomReducer } from './core/store/room/room.reducer';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ChartsModule } from 'ng2-charts';
 
 const config: SocketIoConfig = { url: environment.CHAT_SERVER_URL, options: { autoConnect: false} }
 
@@ -64,6 +65,7 @@ const config: SocketIoConfig = { url: environment.CHAT_SERVER_URL, options: { au
     ContentModule,
     SocketIoModule.forRoot(config),
     NgxSkeletonLoaderModule.forRoot(),
+    ChartsModule
   ],
   providers: [
     AuthAPIService,
